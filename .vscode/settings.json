@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "Binary_Analyzer.C": "cpp",
+        "Group_Extractor_RPC.C": "cpp",
+        "Group_Graph_RPC.C": "cpp",
+        "RPC_CHARGE_TIME_TRIGGERS_Histo2.C": "cpp",
+        "RPC_CHARGE_TIME_TRIGGERS.C": "cpp"
+    }
+}

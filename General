@@ -1,0 +1,84 @@
+#include <iostream>
+
+// Declaración de las funciones
+void Binary_Analyzer();
+void Otra_Funcion();
+void Funcion3();
+void Funcion4();
+void Funcion5();
+
+int main() {
+    int choice;
+    bool continuar = true;
+
+    while (continuar) {
+        std::cout << "Seleccione la función a ejecutar:\n";
+        std::cout << "1. Binary_Analyzer\n";
+        std::cout << "2. Otra_Funcion\n";
+        std::cout << "3. Funcion3\n";
+        std::cout << "4. Funcion4\n";
+        std::cout << "5. Funcion5\n";
+        std::cout << "Ingrese su elección (1-5): ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                Binary_Analyzer();
+                break;
+            case 2:
+                Otra_Funcion();
+                break;
+            case 3:
+                Funcion3();
+                break;
+            case 4:
+                Funcion4();
+                break;
+            case 5:
+                Funcion5();
+                break;
+            default:
+                std::cout << "Opción no válida.\n";
+                break;
+        }
+
+        char respuesta;
+        std::cout << "¿Desea ejecutar otra función? (s/n): ";
+        std::cin >> respuesta;
+        if (respuesta != 's' && respuesta != 'S') {
+            continuar = false;
+        }
+    }
+
+    return 0;
+}
+
+// Definición de las funciones
+void Binary_Analyzer() {
+    // Código de Binary_Analyzer
+    std::cout << "Ejecutando Binary_Analyzer...\n";
+}
+
+void Otra_Funcion() {
+    // Código de Otra_Funcion
+    std::cout << "Ejecutando Otra_Funcion...\n";
+}
+
+void Funcion3() {
+    // Código de Funcion3
+    std::cout << "Ejecutando Funcion3...\n";
+}
+
+void Funcion4() {
+    // Código de Funcion4
+    std::cout << "Ejecutando Funcion4...\n";
+}
+
+void Funcion5() {
+    // Código de Funcion5
+    std::cout << "Ejecutando Funcion5...\n";
+}
+
+void Otra_Funcion() {
+    // Código de Otra_Funcion
+}
