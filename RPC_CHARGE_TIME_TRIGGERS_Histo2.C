@@ -1,19 +1,13 @@
 void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
 {
-  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C("/Users/marcosbautista/Desktop/Datos2023_2/datos_obtenidos/acorde3_middle/position1/CT_rpc_pad2.txt")
-  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C'("/home/yael/shared-drives/E:/Pruebas_YAVB/RPC_11.8KV_CHARGE_TIME2.txt")'
-  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C'("/home/yael/shared-drives/E:/Pruebas_YAVB/RPC_Apagado.txt")'
+  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/3400RPC1.txt")
+
 
   TCanvas *can1 = new TCanvas("c1","Cosmic Rays Test - Time Resolution",200,10,600,400);
   TCanvas *can2 = new TCanvas("c2","Cosmic Rays Test - Charge",200,10,600,400);
   TCanvas *can3 = new TCanvas("c3","Cosmic Rays Test - Charge PMTs - RPC",200,10,600,400);
   TCanvas *can4 = new TCanvas("c4","Cosmic Rays Test - Charge PMTs - RPC",200,10,600,400);
 
-    
-
-    
-    
-    
   gStyle->SetOptFit(1);
   can1->Divide(3, 1);
   can2->Divide(1, 1);
@@ -22,8 +16,8 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
     
 
 
-  //  ifstream in1;
-//  ifstream in1;
+
+
  std::ifstream in1 (file);
 
  //cout<<setprecision(3)<<fixed;
@@ -33,7 +27,7 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   auto h2 = new TH1F("h2", "PMT UP - RPC", LBin, LimI, LimS);
   auto h3 = new TH1F("h3", "PMT DOWN - RPC", LBin, LimI, LimS);
 
-  Int_t LimIa=-100, LimSa=1000,LBina=100, LimIb=-100000, LimSb=2000000,LBinb=100,LBinc=10000,pmin;
+  Int_t LimIa=-100, LimSa=1000,LBina=100, LimIb=-100000, LimSb=2000000,LBinb=100,LBinc=8000,pmin;
   auto h5 = new TH1F("h5", "Charge", LBinc, LimIb, LimSb);
 
   Int_t LimI2=-100000, LimS2=1000000;
@@ -47,19 +41,14 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   auto h13 = new TH1F("h13", "PMT UP - RPC", LBin, LimI, LimS);
   auto h14 = new TH1F("h14", "PMT DOWN - RPC", LBin, LimI, LimS);
   
-  auto hAmplitude = new TH1F("hAmplitude", "Amplitude Distribution", 100, 0, 80000);
+  auto hAmplitude = new TH1F("hAmplitude", "Amplitude Distribution", 1500, 0, 900000);
     
     
 
   while(!in1.eof()){
     in1 >> t1 >> t2 >> t3 >> area >> areaUp >> areaDown >> group >> two >> three;
 
-  // if(areaUp > 100000 && areaUp < 500000 && areaDown > 100000 && areaDown<500000 && area > 90000 && area < 170000)
-    {
-      //if((t4-t3) > 200 && (t4-t3) < 900 && area > 25000 && area < 900000)
-      //if(t3<t1 && t3<t2)
-      {
-      if(t3!=0)//&& areaUp< 7000 )//&& areaUp >3550 && areaDown < 3770 && areaDown > 3550) // t1-t2>-3 && t1-t2<3 &&
+      if(t3!=0)
         {
         h1->Fill(t1-t2);
         h2->Fill(t1-t3);
@@ -72,8 +61,8 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
         hAmplitude->Fill(area);
         }
       //if(((t4-t3)) > 600 && ((t4-t3)) < 700) { cout << group<< endl; }
-      }
-    }
+      
+    
   }
   meanRPC = h5 -> GetMean(1);
   meanUp = h7 -> GetMean(1);
@@ -92,40 +81,26 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
 
   while(!in1.eof()){
     in1 >> t1 >> t2 >> t3 >> area >> areaUp >> areaDown >> group >> two >> three;
+    two2++;
 
-      //if(areaUp > 100000 && areaUp < 500000 && areaDown > 100000 && areaDown<500000 && area > 0)
-      two2++;
-
-      //if(area > 90000 && area < 170000)
-      //if((pow((meanUp-areaUp),2)+pow((meanSiPM-area),2)) < 10000000000) //&& area > 100000 && area<200000
-      {
-        //if((pow((meanDown-areaDown),2)+pow((meanSiPM-area),2)) < 10000000000) //&& area > 100000 && area<200000
-        //if((pow((meanDown-areaDown),2)+pow((meanSiPM-area),2)) < 10000000000) //&& area > 100000 && area<200000
-        {
-
-          //if((pow((meanUp-areaUp),2)+pow((meanDown-areaDown),2)) < 5000000000) //&& area > 100000 && area<200000
-          {
-            //if((t4-t3) > 200 && (t4-t3) < 900 && area > 25000 && area < 900000)
-
-            {
-            if(t3!=0)//&& areaUp< 7000 )//&& areaUp >3550 && areaDown < 3770 && areaDown > 3550) // t1-t2>-3 && t1-t2<3 &&    modificar el pedestal
-            {
-            three2++;
-            h1->Fill((t1-t2)/5);
-            h2->Fill((t1-t3)/5);
-            h3->Fill((t2-t3)/5);
-            h5->Fill((area));
-            h7->Fill((areaUp), (areaDown));
-            h8->Fill((areaUp), (area));
-            h9->Fill((areaDown), (area));
-            h10->Fill((areaUp), (areaDown), (area));
-            hAmplitude->Fill(area);
-            }
-          //if(((area)) > 400000 && ((area)) < 700000) { cout << group<< endl; }
-          }
-        }
-      }
-    }
+            
+     if(t3!=0){ //&& areaUp< 7000 )//&& areaUp >3550 && areaDown < 3770 && areaDown > 3550) // t1-t2>-3 && t1-t2<3 &&    modificar el pedestal
+        three2++;
+        h1->Fill((t1-t2)/5);
+        h2->Fill((t1-t3)/5);
+        h3->Fill((t2-t3)/5);
+        h5->Fill((area));
+        h7->Fill((areaUp), (areaDown));
+        h8->Fill((areaUp), (area));
+        h9->Fill((areaDown), (area));
+        h10->Fill((areaUp), (areaDown), (area));
+        hAmplitude->Fill(area);
+         }
+          
+          
+        
+      
+    
   }
 
   can1->cd(1);
@@ -216,15 +191,11 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   double error2 = f2->GetParError(2);
   double sigma3 = f3->GetParameter(2);
   double error3 = f3->GetParError(2);
-  double mean = f1->GetParameter(1); // Parámetro 1 es la media (el centro) de la gaussiana
+  double mean = f1->GetParameter(1); 
   double FWHM1 = 2 * sqrt(2 * log(2))* sigma1;
   double FWHM2 = 2 * sqrt(2 * log(2))* sigma2;
   double FWHM3 = 2 * sqrt(2 * log(2))* sigma3;
-    
- // int a = h1->FindFirstBinAbove(h1->GetMaximum()/2);
-//  double b = h1->FindLastBinAbove(h1->GetMaximum()/2);
- // double fwhm = h1->GetBinCenter(b) - h1->GetBinCenter(a);
-    
+        
   float TR = sqrt((pow(sigma2,2)+ pow(sigma3,2)- pow(sigma1,2))/2);
   float ERR = sqrt((pow(error2,2)+ pow(error3,2)- pow(error1,2))/2);
   float EFF = (float)three2/(float)two2*100;
@@ -232,18 +203,9 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   cout<<"EFF="<<EFF<<endl;
   cout<<"MeanUp= "<<meanUp<<" MeanDown= "<<meanDown<<" MeanRPC= "<<meanRPC<<endl;
     
-// Imprimir el FWHM
   cout << "FWHM1: " << FWHM1 << " ns" << endl;
   cout << "FWHM2: " << FWHM2 << " ns" << endl;
   cout << "FWHM3: " << FWHM3 << " ns" << endl;
 }
 
 
-
-
-
-// voltaje vs resolicion temporal
-// eficienmcias vs voltajes
-//amplitud vs voltajes 
-// dejar ceros y mejorar el binning
-// Cuenta de github

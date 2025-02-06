@@ -1,17 +1,9 @@
-//This code reads files of FDD, TR0 and TG2 signals. FDD refers to the analogic signal connected directly to V1742.
-//The pulse time of TR0 and TG2 is calculated (t1 and t2) and for the analogic FDD signal, t3 and t4 are the initial and final pulse times.
-//The area under the curve is calculated for analogic FDD. The output file contains these four time values and the total area of the pulse.
+
 
 void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string fileout)
 {
-  //root.exe RPC_CHARGE_TIME_TRIGGERS.C("/Users/marcosbautista/Desktop/Datos2023_2/datos_obtenidos/acorde1_twofibers/Position1_Low/RPC.txt", "/Users/marcosbautista/Desktop/Datos2023_2/datos_obtenidos/acorde1_twofibers/Position1_Low/PMT_up_data.txt", "/Users/marcosbautista/Desktop/Datos2023_2/datos_obtenidos/acorde1_twofibers/Position1_Low/PMT_down_data.txt", "/Users/marcosbautista/Desktop/Datos2023_2/datos_obtenidos/acorde1_twofibers/Position1_Low/CT_rpc.txt")
+  //root.exe RPC_CHARGE_TIME_TRIGGERS.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/RPC.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/PMT_up_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/PMT_down_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/3400RPC1.txt")
     
-    
-    
-    
-  //root.exe RPC_CHARGE_TIME_TRIGGERS.C'("/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_16_RPC_Puras_11.8KV/RPC.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_16_RPC_Puras_11.8KV/Up.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_16_RPC_Puras_11.8KV/Down.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/RPC_11.8KV_CHARGE_TIME2.txt")'
-  //root.exe RPC_CHARGE_TIME_TRIGGERS.C'("/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_22_RPC_Apagado/RPC.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_22_RPC_Apagado/Up.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/Prueba_22_RPC_Apagado/Down.txt", "/home/yael/shared-drives/E:/Pruebas_YAVB/RPC_Apagado.txt")'
-
     ifstream in1;
     ifstream in2;
     ifstream in3;
@@ -62,7 +54,7 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
 
        for(Int_t j=0;j<=1024;j++)
        {
-         if(trigger1[j]<3750 && trigger1[j]>1000) //negative slope
+         if(trigger1[j]<3400 && trigger1[j]>1000) //negative slope
          {
            c1++;
            if (c1 == 1) {
@@ -76,7 +68,7 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
 
        for(Int_t k=0;k<=1024;k++)
        {
-         if(trigger2[k]<3750 && trigger2[k]>1000) //negative slope
+         if(trigger2[k]<3400 && trigger2[k]>1000) //negative slope
          {
            c2++;
            if (c2 == 1) {
@@ -87,7 +79,7 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
 
        for(Int_t l=0;l<=1024;l++)
        {
-         if(rpc[l]<3640 && rpc[l]>1000) //negative slope
+         if(rpc[l]<3400 && rpc[l]>1000) //negative slope
          {
            c3++;
            if (c3 == 1) {
