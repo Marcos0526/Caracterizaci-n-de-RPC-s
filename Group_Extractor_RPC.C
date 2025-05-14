@@ -2,7 +2,7 @@ void Group_Extractor_RPC(string file, string file2, string file3, string file4, 
 {
 
   //cd Documents/NewCodes
-  //root.exe Group_Extractor_RPC.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/19062024/RPC.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/19062024/PMT_up_data.txt","/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/19062024/PMT_down_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/19062024/TR_0_0_data.txt", "/Users/marcosbautista/Desktop/pruebas/GE_g6.txt",5)
+  //root.exe Group_Extractor_RPC.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/RPC.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/PMT_up_data.txt","/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/PMT_down_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/TR_0_0_data.txt", "/Users/marcosbautista/Desktop/pruebas/Grupo0.txt",0)
 
 
    ifstream in1;

@@ -1,7 +1,7 @@
 void Group_Graph_RPC(string file)
 {
 
-  //root.exe Group_Graph_RPC.C("/Users/marcosbautista/Desktop/pruebas/GE_g6.txt")
+  //root.exe Group_Graph_RPC.C("/Users/marcosbautista/Desktop/pruebas/Grupo0.txt")
 
   TCanvas *can1 = new TCanvas("c1","Canvas",200,10,600,400);
   auto gr1 = new TGraph(1024); gr1->SetMarkerColor(kRed); gr1 -> SetLineColor(kRed); gr1->SetMarkerStyle(20); gr1->SetMarkerSize(0.8);

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-file_path = '/Users/marcosbautista/Desktop/cop_V_FWHM.csv'
+file_path = '/Users/marcosbautista/Desktop/CSV/cop_V_FWHM.csv'
 data = pd.read_csv(file_path)
 
 
@@ -32,6 +32,7 @@ def graficar_voltaje_vs_fwhm(data, columna, nombre, color):
     plt.title(f'Voltaje vs {nombre}')
     plt.xlabel('Voltaje')
     plt.ylabel(f'{columna}(ns)' )
+    plt.ylim(1, 2.5)
     plt.grid(alpha=0.5, linestyle='--')
     plt.show()
 

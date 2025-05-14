@@ -1,6 +1,8 @@
+
+
 void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
 {
-  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/3400RPC1.txt")
+  //root.exe RPC_CHARGE_TIME_TRIGGERS_Histo2.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/17052024/2CTRPC.txt")
 
 
   TCanvas *can1 = new TCanvas("c1","Cosmic Rays Test - Time Resolution",200,10,600,400);
@@ -22,12 +24,12 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
 
  //cout<<setprecision(3)<<fixed;
   float t1, t2,t3,t4, two, three, two2=0, three2=0, area, areaUp, areaDown, meanUp, meanDown, meanRPC;   //t1=trigger1 t2=trigger2 t3=sipm
-  Int_t LimI=-100, LimS=100,LBin=100, group;
+  Int_t LimI=-10, LimS=10,LBin=100, group;
   auto h1 = new TH1F("h1", "PMT UP - PMT DOWN", LBin, LimI, LimS);
   auto h2 = new TH1F("h2", "PMT UP - RPC", LBin, LimI, LimS);
   auto h3 = new TH1F("h3", "PMT DOWN - RPC", LBin, LimI, LimS);
 
-  Int_t LimIa=-100, LimSa=1000,LBina=100, LimIb=-100000, LimSb=2000000,LBinb=100,LBinc=8000,pmin;
+  Int_t LimIa=-100, LimSa=1000,LBina=100, LimIb=-100000, LimSb=2000000,LBinb=100,LBinc=10000,pmin;
   auto h5 = new TH1F("h5", "Charge", LBinc, LimIb, LimSb);
 
   Int_t LimI2=-100000, LimS2=1000000;
@@ -41,13 +43,13 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   auto h13 = new TH1F("h13", "PMT UP - RPC", LBin, LimI, LimS);
   auto h14 = new TH1F("h14", "PMT DOWN - RPC", LBin, LimI, LimS);
   
-  auto hAmplitude = new TH1F("hAmplitude", "Amplitude Distribution", 1500, 0, 900000);
+  auto hAmplitude = new TH1F("hAmplitude", "Amplitude Distribution", 1500, 0, 2000000);
     
     
 
   while(!in1.eof()){
     in1 >> t1 >> t2 >> t3 >> area >> areaUp >> areaDown >> group >> two >> three;
-
+    
       if(t3!=0)
         {
         h1->Fill(t1-t2);
@@ -62,7 +64,7 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
         }
       //if(((t4-t3)) > 600 && ((t4-t3)) < 700) { cout << group<< endl; }
       
-    
+      
   }
   meanRPC = h5 -> GetMean(1);
   meanUp = h7 -> GetMean(1);
@@ -78,6 +80,7 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
   h8->Reset("ICESM");
   h9->Reset("ICESM");
   h10->Reset("ICESM");
+  hAmplitude->Reset("ICESM");
 
   while(!in1.eof()){
     in1 >> t1 >> t2 >> t3 >> area >> areaUp >> areaDown >> group >> two >> three;
@@ -86,7 +89,7 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
             
      if(t3!=0){ //&& areaUp< 7000 )//&& areaUp >3550 && areaDown < 3770 && areaDown > 3550) // t1-t2>-3 && t1-t2<3 &&    modificar el pedestal
         three2++;
-        h1->Fill((t1-t2)/5);
+        h1->Fill((t1-t2)/5); // t1-t2
         h2->Fill((t1-t3)/5);
         h3->Fill((t2-t3)/5);
         h5->Fill((area));
@@ -95,12 +98,7 @@ void RPC_CHARGE_TIME_TRIGGERS_Histo2(string file)
         h9->Fill((areaDown), (area));
         h10->Fill((areaUp), (areaDown), (area));
         hAmplitude->Fill(area);
-         }
-          
-          
-        
-      
-    
+         } 
   }
 
   can1->cd(1);

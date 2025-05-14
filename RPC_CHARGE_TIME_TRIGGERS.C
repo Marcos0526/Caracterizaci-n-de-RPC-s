@@ -2,7 +2,7 @@
 
 void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string fileout)
 {
-  //root.exe RPC_CHARGE_TIME_TRIGGERS.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/RPC.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/PMT_up_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/PMT_down_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/01072024/3400RPC1.txt")
+  //root.exe RPC_CHARGE_TIME_TRIGGERS.C("/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/RPC.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/PMT_up_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/PMT_down_data.txt", "/Volumes/LaCie/Tesis/Datos Tratados/Datos2024_2tratados/03072024/PPP3600RPC.txt")
     
     ifstream in1;
     ifstream in2;
@@ -54,13 +54,13 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
 
        for(Int_t j=0;j<=1024;j++)
        {
-         if(trigger1[j]<3400 && trigger1[j]>1000) //negative slope
+         if(trigger1[j]<3600 && trigger1[j]>1000) //negative slope
          {
            c1++;
            if (c1 == 1) {
              t1 = time[j];
                
-         //      cout<<" "<<trigger1[j]<<" ";
+             //cout<<" "<<trigger1[j]<<" ";
                
            }
          }
@@ -68,26 +68,29 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
 
        for(Int_t k=0;k<=1024;k++)
        {
-         if(trigger2[k]<3400 && trigger2[k]>1000) //negative slope
+         if(trigger2[k]<3600 && trigger2[k]>1000) //negative slope
          {
            c2++;
            if (c2 == 1) {
              t2 = time[k];
+             //cout<<" "<<trigger2[k]<<" ";
            }
          }
        }
 
        for(Int_t l=0;l<=1024;l++)
        {
-         if(rpc[l]<3400 && rpc[l]>1000) //negative slope
+         if(rpc[l]<3600 && rpc[l]>1000) //negative slope
          {
            c3++;
            if (c3 == 1) {
              t3 = time[l];
+            // cout<<" "<<rpc[l]<<" ";
            }
          }
        }
 
+       
 
        //RPC
 
@@ -96,7 +99,7 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
        basement = 0;
        bm =0;
        for (Int_t i = 0; i <= lines; i++)
-       {
+       {  
          if (i<20) {
            basement = basement + rpc[i];
          //if (i>993 && i < 1014) {
@@ -116,7 +119,7 @@ void RPC_CHARGE_TIME_TRIGGERS(string file, string  file2, string  file3, string 
        {
          downA=(((time[g+1]-time[g])*(rpc[g+1]))+((time[g+1]-time[g])*(rpc[g]-(rpc[g+1])))/2)+downA;
        }
-       totalA=abs((bm*1014)-downA); //=200/1024 * 1014
+       totalA=(bm*1014)-downA; //=200/1024 * 1014
 
 
        //PMT UP
